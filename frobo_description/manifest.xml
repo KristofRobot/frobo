@@ -1,0 +1,14 @@
+<package>
+  <description brief="frobo_description">
+
+     frobo_description
+
+  </description>
+  <author>Kristof Robot</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/frobo_description</url>
+
+</package>
+
+

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<robot name="Frobo" >
+
+  <!-- The following included files set up definitions of parts of the robot body -->
+  <include filename="$(find frobo_description)/urdf/base.urdf.xacro" />
+  <include filename="$(find frobo_description)/urdf/materials.urdf.xacro" />
+
+  <!-- Now we can start using the macros included above to define the actual Frobo -->
+  <frobo_base name="base" color="Brown"/>
+
+</robot>
