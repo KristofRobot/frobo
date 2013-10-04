@@ -1,0 +1,20 @@
+<launch>
+  <!-- Launch the OpenNI drivers -->
+  <include file="$(find freenect_launch)/launch/freenect.launch">
+    <arg name="data_skip" value="9" />
+    <!-- supply appropriate processing constellation -->
+    <arg name="processing_constellation_file"
+      value="$(find rbx1_bringup)/launch/produce-frobo.launch" />
+  </include>
+
+
+  <!-- Run the depthimage_to_laserscan node -->
+  <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan" output="screen">
+    <remap from="image" to="/camera/depth/image_raw" />
+    <remap from="camera_info" to="/camera/depth/camera_info" />
+    <remap from="scan" to="/scan" />
+    <param name="output_frame_id" value="/head_camera_ir_link" />
+    <param name="scan_time" value="0.33" />
+</node>
+
+</launch>
