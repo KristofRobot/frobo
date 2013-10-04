@@ -4,8 +4,14 @@
   <!-- The following included files set up definitions of parts of the robot body -->
   <include filename="$(find frobo_description)/urdf/base.urdf.xacro" />
   <include filename="$(find frobo_description)/urdf/materials.urdf.xacro" />
+  <include filename="$(find frobo_description)/urdf/kinect_camera.urdf.xacro" />
 
   <!-- Now we can start using the macros included above to define the actual Frobo -->
   <frobo_base name="base" color="Brown"/>
+
+  <!-- Camera -->
+  <kinect_camera name="head_camera" parent="base_link">
+    <origin xyz="0 0 0.26" rpy="0 0 0"/>
+  </kinect_camera>
 
 </robot>

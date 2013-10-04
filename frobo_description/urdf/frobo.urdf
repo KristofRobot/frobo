@@ -110,5 +110,65 @@
       <material name="Blue"/>
     </visual>
   </link>
+  <!-- Camera -->
+  <joint name="head_camera_frame_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.26"/>
+    <parent link="base_link"/>
+    <child link="head_camera_frame"/>
+  </joint>
+  <link name="head_camera_frame">
+    <visual>
+      <origin rpy="0 0 -1.57" xyz="-0.03 0 0.02"/>
+      <!--origin xyz="-0.03 -0.07 0" rpy="0 0 -1.57"-->
+      <geometry>
+        <mesh filename="package://frobo_description/meshes/kinect.stl"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.064 0.28 0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="head_camera_ir_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="head_camera_frame"/>
+    <child link="head_camera_ir_link"/>
+  </joint>
+  <link name="head_camera_ir_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0"/>
+      <geometry>
+        <sphere radius="0.0005"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="head_camera_ir_optical_frame_joint" type="fixed">
+    <origin rpy="-1.57 0.0 -1.57" xyz="0 0 0"/>
+    <parent link="head_camera_ir_link"/>
+    <child link="head_camera_ir_optical_frame"/>
+  </joint>
+  <link name="head_camera_ir_optical_frame"/>
+  <joint name="head_camera_rgb_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 -0.03 0"/>
+    <parent link="head_camera_ir_link"/>
+    <child link="head_camera_rgb_link"/>
+  </joint>
+  <link name="head_camera_rgb_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0"/>
+      <geometry>
+        <sphere radius="0.0005"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="head_camera_rgb_optical_frame_joint" type="fixed">
+    <origin rpy="-1.57 0.0 -1.57" xyz="0 0 0"/>
+    <parent link="head_camera_rgb_link"/>
+    <child link="head_camera_rgb_optical_frame"/>
+  </joint>
+  <link name="head_camera_rgb_optical_frame"/>
 </robot>
 
