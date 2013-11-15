@@ -1,4 +1,4 @@
-controller_frequency: 5.0
+controller_frequency: 3.0
 recovery_behavior_enabled: false
 clearing_rotation_allowed: false
 
@@ -14,7 +14,7 @@ TrajectoryPlannerROS:
 
    holonomic_robot: false
    yaw_goal_tolerance: 6.28 # 360 degrees
-   xy_goal_tolerance: 0.15  # 15 cm
+   xy_goal_tolerance: 0.25  # 25 cm
    latch_xy_goal_tolerance: false
    pdist_scale: 0.8
    gdist_scale: 0.6
@@ -25,10 +25,10 @@ TrajectoryPlannerROS:
    heading_scoring_timestep: 0.8
    occdist_scale: 0.1   #The weighting for how much the controller should attempt to avoid obstacles - CHANGED from 0.1
    oscillation_reset_dist: 0.05
-   publish_cost_grid_pc: true
+   publish_cost_grid_pc: false
    prune_plan: true
 
-   sim_time: 1.0  #The amount of time to forward-simulate trajectories in seconds - CHANGED from 1.0 - sim_time*min_accel should be < min_tolerance*2!!
+   sim_time: 3.0  #The amount of time to forward-simulate trajectories in seconds - CHANGED from 1.0 - sim_time*min_accel should be < min_tolerance*2!!
    sim_granularity: 0.1
    angular_sim_granularity: 0.1
    vx_samples: 8
