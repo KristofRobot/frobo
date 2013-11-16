@@ -20,12 +20,12 @@ TrajectoryPlannerROS:
    gdist_scale: 0.6
    meter_scoring: true   #Whether the gdist_scale and pdist_scale parameters should assume that goal_distance and path_distance are expressed in units of meters or cells. Cells are assumed by default. CHANGED
 
-   heading_lookahead: 0.325
+   heading_lookahead: 0.625
    heading_scoring: false   #Whether to score based on the robot's heading to the path or its distance from the path
    heading_scoring_timestep: 0.8
-   occdist_scale: 0.1   #The weighting for how much the controller should attempt to avoid obstacles - CHANGED from 0.1
+   occdist_scale: 0.01   #The weighting for how much the controller should attempt to avoid obstacles - CHANGED from 0.1
    oscillation_reset_dist: 0.05
-   publish_cost_grid_pc: false
+   publish_cost_grid_pc: true
    prune_plan: true
 
    sim_time: 3.0  #The amount of time to forward-simulate trajectories in seconds - CHANGED from 1.0 - sim_time*min_accel should be < min_tolerance*2!!
