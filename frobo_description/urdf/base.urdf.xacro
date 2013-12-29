@@ -2,6 +2,9 @@
 <robot>
 
   <property name="ground_clearance" value="0.0740" />
+  <property name="level1_clearance" value="0.18" />
+  <property name="level2_clearance" value="0.24" />
+  <property name="level3_clearance" value="0.305" />
   <property name="wheel_offset_y" value="0.116" />
   <property name="wheel_length" value="0.02032" />
   <property name="wheel_radius" value="0.06191" />
@@ -52,7 +55,7 @@
       </visual>
     </link>
   </macro>
-  
+
   <!-- The xacro macro frobo_base contains: base and wheels -->
   <macro name="frobo_base" params="name color">
     <link name="${name}_link">
@@ -60,6 +63,27 @@
         <origin xyz="0 0 ${ground_clearance}" rpy="0 0 0" />
         <geometry>
           <!-- <mesh filename="package://frobo_description/meshes/base.stl"  /> -->
+	  <cylinder radius="${base_radius}" length="${base_length}"/>
+        </geometry>
+        <material name="${color}" />
+      </visual>
+      <visual>
+        <origin xyz="0 0 ${level1_clearance}" rpy="0 0 0" />
+        <geometry>
+	  <cylinder radius="${base_radius}" length="${base_length}"/>
+        </geometry>
+        <material name="${color}" />
+      </visual>
+      <visual>
+        <origin xyz="0 0 ${level2_clearance}" rpy="0 0 0" />
+        <geometry>
+	  <cylinder radius="${base_radius}" length="${base_length}"/>
+        </geometry>
+        <material name="${color}" />
+      </visual>
+      <visual>
+        <origin xyz="0 0 ${level3_clearance}" rpy="0 0 0" />
+        <geometry>
 	  <cylinder radius="${base_radius}" length="${base_length}"/>
         </geometry>
         <material name="${color}" />

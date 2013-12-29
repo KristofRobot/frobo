@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot>
+
+  <!-- define a lidar -->
+  <macro name="lidar" params="name parent *origin">
+    <joint name="${name}_joint" type="fixed">
+      <insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${name}_link"/>
+    </joint>
+    <link name="${name}_link">
+      <visual>
+        <origin xyz="0 0 -0.01718" rpy="0 0 0" />
+        <geometry>
+	  <!-- <mesh filename="package://frobo_description/meshes/lidar.stl" /> -->
+          <cylinder radius="0.05" length="0.05211"/>
+        </geometry>
+        <material name="Black" />
+      </visual>
+    </link>
+  </macro>
+
+</robot>
