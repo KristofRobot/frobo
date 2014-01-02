@@ -1,24 +1,25 @@
 <?xml version="1.0"?>
-<robot>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <property name="ground_clearance" value="0.0740" />
-  <property name="level1_clearance" value="0.18" />
-  <property name="level2_clearance" value="0.24" />
-  <property name="level3_clearance" value="0.305" />
-  <property name="wheel_offset_y" value="0.116" />
-  <property name="wheel_length" value="0.02032" />
-  <property name="wheel_radius" value="0.06191" />
-  <property name="swivel_length" value="0.019" />
-  <property name="swivel_radius" value="0.025" />
-  <property name="base_radius" value="0.15" />
-  <property name="base_collision_radius" value="0.20" />
-  <property name="base_length" value="0.006" />
-  <property name="sonar_clearance" value="${ground_clearance-0.02}" />
-  <property name="sonar_angle" value="0.6" />
+  <xacro:property name="ground_clearance" value="0.0740" />
+  <xacro:property name="level1_clearance" value="0.18" />
+  <xacro:property name="level2_clearance" value="0.24" />
+  <xacro:property name="level3_clearance" value="0.305" />
+  <xacro:property name="wheel_offset_y" value="0.116" />
+  <xacro:property name="wheel_length" value="0.02032" />
+  <xacro:property name="wheel_radius" value="0.06191" />
+  <xacro:property name="swivel_length" value="0.019" />
+  <xacro:property name="swivel_radius" value="0.025" />
+  <xacro:property name="base_radius" value="0.15" />
+  <xacro:property name="base_collision_radius" value="0.20" />
+  <xacro:property name="base_collision_top_clearance" value="0.10" />
+  <xacro:property name="base_length" value="0.006" />
+  <xacro:property name="sonar_clearance" value="${ground_clearance-0.02}" />
+  <xacro:property name="sonar_angle" value="0.6" />
 
 
   <!-- define a rotating wheel -->
-  <macro name="frobo_wheel" params="suffix parent reflect color">
+  <xacro:macro name="frobo_wheel" params="suffix parent reflect color">
     <joint name="${parent}_${suffix}_wheel_joint" type="continuous">
       <axis xyz="0 0 1" />
       <limit effort="100" velocity="100"/>
@@ -35,11 +36,25 @@
         </geometry>
         <material name="${color}" />
       </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>
+        <mass value="0.2"/>
+        <inertia 
+          ixx="1e-3" ixy="0.0" ixz="0.0" 
+          iyy="1e-3" iyz="0.0" 
+          izz="1e-3"/>
+      </inertial>
     </link>
-  </macro>
+  </xacro:macro>
 
   <!-- define a sonar -->
-  <macro name="frobo_sonar" params="suffix parent offset_x offset_y angle color">
+  <xacro:macro name="frobo_sonar" params="suffix parent offset_x offset_y angle color">
     <joint name="${parent}_${suffix}_sonar_joint" type="fixed">
       <origin xyz="${offset_x} ${offset_y} ${sonar_clearance}" rpy="0 0 ${angle}" />
       <parent link="${parent}_link"/>
@@ -54,10 +69,10 @@
         <material name="${color}" />
       </visual>
     </link>
-  </macro>
+  </xacro:macro>
 
   <!-- The xacro macro frobo_base contains: base and wheels -->
-  <macro name="frobo_base" params="name color">
+  <xacro:macro name="frobo_base" params="name color">
     <link name="${name}_link">
       <visual>
         <origin xyz="0 0 ${ground_clearance}" rpy="0 0 0" />
@@ -114,11 +129,19 @@
       </visual> 
       -->
       <collision>
-        <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0" />
+        <origin xyz="0 0 ${(level3_clearance+base_collision_top_clearance)/2}" rpy="0 0 0" />
         <geometry>
-          <cylinder radius="${base_collision_radius}" length="${wheel_radius*2}" />
+          <cylinder radius="${base_collision_radius}" length="${level3_clearance+base_collision_top_clearance}"/>
         </geometry>
       </collision>
+      <inertial>
+        <origin xyz="0 0 ${base_radius}" rpy="0 0 0"/>
+        <mass value="5"/>
+        <inertia 
+          ixx="10e-3" ixy="0.0" ixz="0.0" 
+          iyy="10e-3" iyz="0.0" 
+          izz="10e-3"/>
+      </inertial>
     </link>
   
     <!-- drive wheels -->
@@ -130,6 +153,6 @@
     <frobo_sonar parent="${name}" offset_x="0.125" offset_y="0" angle="0" suffix="fc" color="Blue"/>
     <frobo_sonar parent="${name}" offset_x="0.115" offset_y="0.055" angle="${sonar_angle}" suffix="fl" color="Blue"/>
 	
-  </macro>
+  </xacro:macro>
 
 </robot>

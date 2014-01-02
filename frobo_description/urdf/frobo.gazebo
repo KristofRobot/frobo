@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<robot>
+
+  <!-- base -->
+  <gazebo reference="base_link">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+
+  <!-- kinect camera -->
+  <gazebo reference="head_camera_frame">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <!-- lidar -->
+  <gazebo reference="lidar_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+</robot>
