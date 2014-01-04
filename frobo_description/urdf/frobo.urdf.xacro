@@ -24,4 +24,8 @@
     <origin xyz="-0.02 0 0.285" rpy="0 0 0"/>
   </lidar>
 
+
+  <!-- extensions -->
+  <xacro:frobo_base_gazebo />
+
 </robot>

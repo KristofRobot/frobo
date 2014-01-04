@@ -102,7 +102,7 @@
 	  <cylinder radius="${base_radius}" length="${base_length}"/>
         </geometry>
         <material name="${color}" />
-      </visual>
+      </visual> 
       <!-- fixed wheels, without tf transform, just for visualization -->
       <visual>
         <origin xyz="0 ${1*wheel_offset_y} ${wheel_radius}" rpy="1.57 0 0" />
@@ -128,14 +128,22 @@
         <material name="Grey" />
       </visual> 
       -->
+      <!-- split collision object of base in two, one below lidar, and one on top lidar
+      to keep lidar free for object detection (otherwise it would be blocked by collision object) -->
       <collision>
-        <origin xyz="0 0 ${(level3_clearance+base_collision_top_clearance)/2}" rpy="0 0 0" />
+      <origin xyz="0 0 ${level2_clearance/2}" rpy="0 0 0" /> 
         <geometry>
-          <cylinder radius="${base_collision_radius}" length="${level3_clearance+base_collision_top_clearance}"/>
+          <cylinder radius="${base_collision_radius}" length="${level2_clearance}"/>
         </geometry>
       </collision>
+      <collision>
+        <origin xyz="0 0 ${level3_clearance+base_collision_top_clearance/2}" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="${base_collision_radius}" length="${base_collision_top_clearance}"/>
+        </geometry>
+      </collision> 
       <inertial>
-        <origin xyz="0 0 ${base_radius}" rpy="0 0 0"/>
+        <origin xyz="0 0 ${base_radius}" rpy="0 0 0"/> 
         <mass value="5"/>
         <inertia 
           ixx="10e-3" ixy="0.0" ixz="0.0" 
