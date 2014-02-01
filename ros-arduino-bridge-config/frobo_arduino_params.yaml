@@ -4,6 +4,7 @@
 # /dev/ttyUSB# where # is a number such as 0, 1, 2, etc.
 
 #port: /dev/rfcomm0
+#port: /dev/ttyS1
 port: /dev/ttyACM0
 baud: 115200
 #baud: 57600
@@ -16,11 +17,14 @@ use_base_controller: True
 base_controller_rate: 10
 
 # === Robot drivetrain parameters
-wheel_diameter: 0.123825
-wheel_track: 0.225 #corrected after angular calibration; change this parameter by dividing it by your correction factor.
+#wheel_diameter: 0.123825 #orange wheels
+#wheel_track: 0.238 #orange wheels corrected after angular calibration; change this parameter by dividing it by your correction factor.
+wheel_diameter: 0.075 #grey wheels
+wheel_track: 0.240 #grey wheels corrected after angular calibration; change this parameter by dividing it by your correction factor.
 
 encoder_resolution: 6533 # 6533 from Pololu for 100:1 motors
-gear_reduction: 0.975 #corrected after linear calibration
+#gear_reduction: 0.975 #orange wheels; corrected after linear calibration
+gear_reduction: 0.985 #grey wheels; corrected after linear calibration
 motors_reversed: False
 
 # === PID parameters
@@ -43,11 +47,11 @@ accel_limit: 1.0
 
 
 sensors: {
-  motor_current_left:   {pin: 14, type: PololuMotorCurrent, rate: 5},
-  motor_current_right:  {pin: 15, type: PololuMotorCurrent, rate: 5},
-  sonar_front_left:   {pin: 11, type: PointCloudPing, rate: 2, frame_id: /base_fl_sonar_link},
-  sonar_front_center:   {pin: 6, type: PointCloudPing, rate: 2, frame_id: /base_fc_sonar_link},
-  sonar_front_right:   {pin: 5, type: PointCloudPing, rate: 2, frame_id: /base_fr_sonar_link},
+  motor_current_left:   {pin: 14, type: PololuMotorCurrent, rate: 2},
+  motor_current_right:  {pin: 15, type: PololuMotorCurrent, rate: 2},
+#  sonar_front_left:   {pin: 0, type: LaserScanPing, rate: 2, frame_id: /base_fl_sonar_link},
+#  sonar_front_center:   {pin: 1, type: LaserScanPing, rate: 2, frame_id: /base_fc_sonar_link},
+#  sonar_front_right:   {pin: 2, type: LaserScanPing, rate: 2, frame_id: /base_fr_sonar_link},
 #
 #  sonar_front_left:   {pin: 11, type: Ping, rate: 2, frame_id: /base_fl_sonar_link},
 #  sonar_front_center:   {pin: 6, type: Ping, rate: 2, frame_id: /base_fc_sonar_link},
