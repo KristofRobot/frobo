@@ -1,0 +1,20 @@
+<package>
+  <name>frobo_description</name>
+  <version>1.0.0</version>
+  <description>
+     frobo_description provides a model of Frobo for simulation and visualization. 
+  </description>
+  <author email="krirobo@gmail.com">Kristof Robot</author>
+  <maintainer email="krirobo@gmail.com">Kristof Robot</maintainer>
+  <license>BSD</license>
+  <url type="repository">https://github.com/KristofRobot/frobo</url>
+  <url type="bugtracker">https://github.com/KristofRobot/frobo/issues</url>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>urdf</build_depend>
+  <build_depend>xacro</build_depend>
+
+  <run_depend>urdf</run_depend>
+  <run_depend>xacro</run_depend>
+</package>
