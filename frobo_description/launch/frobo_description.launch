@@ -1,5 +1,6 @@
 <launch>
-   <param name="robot_description" command="cat $(find frobo_description)/urdf/frobo.urdf" />
+   <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find frobo_description)/urdf/frobo.urdf.xacro'" />
+   <param name="robot_description" command="$(arg urdf_file)" />
    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
 </launch>
