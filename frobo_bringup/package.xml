@@ -1,0 +1,19 @@
+<package>
+  <name>frobo_bringup</name>
+  <version>1.0.0</version>
+
+  <description>Frobo Startup Package</description>
+
+  <author email="krirobo@gmail.com">Kristof Robot</author>
+  <maintainer email="krirobo@gmail.com">Kristof Robot</maintainer>
+  <license>BSD</license>
+  <url type="repository">https://github.com/KristofRobot/frobo</url>
+  <url type="bugtracker">https://github.com/KristofRobot/frobo/issues</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>frobo_description</run_depend>
+  <run_depend>freenect_launch</run_depend>
+  <run_depend>depthimage_to_laserscan</run_depend>
+
+</package>
