@@ -1,8 +1,0 @@
-<launch>
-   <param name="robot_description" command="cat $(find frobo_description)/urdf/frobo.urdf" />
-   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
-   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
-   <node name="arduino" pkg="ros_arduino_python" type="arduino_node.py" output="screen">
-      <rosparam file="$(find ros_arduino_python)/config/frobo_arduino_params.yaml" command="load" />
-   </node>
-</launch>
