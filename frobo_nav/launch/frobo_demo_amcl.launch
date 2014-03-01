@@ -7,12 +7,12 @@
   <arg name="map" default="my_map.yaml" />
 
   <!-- Run the map server with the desired map -->
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find rbx1_nav)/maps/$(arg map)"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find frobo_nav)/maps/$(arg map)"/>
 
   <!-- Start move_base  -->
-  <include file="$(find rbx1_nav)/launch/frobo_move_base.launch" />
+  <include file="$(find frobo_nav)/launch/frobo_move_base.launch" />
 
   <!-- Fire up AMCL -->
-  <include file="$(find rbx1_nav)/launch/frobo_amcl.launch" />
+  <include file="$(find frobo_nav)/launch/frobo_amcl.launch" />
   
 </launch>
