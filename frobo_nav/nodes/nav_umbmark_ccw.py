@@ -25,7 +25,7 @@
 import rospy
 from geometry_msgs.msg import Twist, Point, Quaternion
 import tf
-from rbx1_nav.transform_utils import quat_to_angle, normalize_angle
+from frobo_nav.transform_utils import quat_to_angle, normalize_angle
 from math import degrees, radians, copysign, sqrt, pow, pi
 
 class NavSquare():

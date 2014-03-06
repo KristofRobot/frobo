@@ -23,7 +23,6 @@
       
 """
 
-import roslib; roslib.load_manifest('rbx1_nav')
 import rospy
 from actionlib.simple_action_client import SimpleActionClient
 from actionlib_msgs.msg import *
