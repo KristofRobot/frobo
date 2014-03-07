@@ -9,9 +9,6 @@ generate_dynamic_reconfigure_options(cfg/CalibrateAngular.cfg cfg/CalibrateLinea
 
 catkin_package(CATKIN_DEPENDS dynamic_reconfigure)
 
-install(DIRECTORY cfg
-        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-)
 install(DIRECTORY config
         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
@@ -21,6 +18,7 @@ install(DIRECTORY launch
 install(DIRECTORY maps
         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
-install(DIRECTORY nodes
-        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+install(DIRECTORY nodes/
+        DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+	USE_SOURCE_PERMISSIONS
 )
