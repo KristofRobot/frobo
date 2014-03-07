@@ -7,7 +7,7 @@
   <arg name="map" default="test_map.yaml" />
 
   <!-- Run the map server with the desired map -->
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find rbx1_nav)/maps/$(arg map)"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find frobo_nav)/maps/$(arg map)"/>
 
   <!-- Start the move_base node with the nav_test parameters -->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
@@ -16,7 +16,6 @@
     <rosparam file="$(find frobo_nav)/config/frobo/local_costmap_params.yaml" command="load" />
     <rosparam file="$(find frobo_nav)/config/frobo/global_costmap_params.yaml" command="load" />
     <rosparam file="$(find frobo_nav)/config/frobo/base_local_planner_params.yaml" command="load" />
-    <rosparam file="$(find frobo_nav)/config/nav_test_params.yaml" command="load" />
   </node>
 
 
