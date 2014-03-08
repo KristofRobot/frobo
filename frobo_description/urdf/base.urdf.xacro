@@ -72,8 +72,35 @@
   </xacro:macro>
 
   <!-- The xacro macro frobo_base contains: base and wheels -->
-  <xacro:macro name="frobo_base" params="name color">
-    <link name="${name}_link">
+  <xacro:macro name="frobo_base" params="color">
+    <link name="base_footprint">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="Black" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${ground_clearance}" rpy="0 0 0"/>
+        <geometry>
+         <box size="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+    <!-- 
+        base_footprint mapping was introduced as robot-pose-ekf requires it.
+        strictly spoken, base_link should be attached to the base, 
+	and base_footprint is a projection of base_link on the ground.
+        Here base_link and base_footprint are simply mapped on the same point, on the ground.
+        See also https://github.com/ros-planning/navigation/issues/15
+    -->
+    <joint name="base_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="base_footprint"/>
+      <child link="base_link" />
+    </joint>
+    <link name="base_link">
       <visual>
         <origin xyz="0 0 ${ground_clearance}" rpy="0 0 0" />
         <geometry>
@@ -131,7 +158,7 @@
       <!-- split collision object of base in two, one below lidar, and one on top lidar
       to keep lidar free for object detection (otherwise it would be blocked by collision object) -->
       <collision>
-      <origin xyz="0 0 ${level2_clearance/2}" rpy="0 0 0" /> 
+        <origin xyz="0 0 ${level2_clearance/2}" rpy="0 0 0" /> 
         <geometry>
           <cylinder radius="${base_collision_radius}" length="${level2_clearance}"/>
         </geometry>
@@ -157,9 +184,9 @@
     <frobo_wheel parent="${name}" suffix="r" reflect="-1" color="Orange"/>-->
 
     <!-- sonars -->
-    <frobo_sonar parent="${name}" offset_x="0.115" offset_y="-0.055" angle="-${sonar_angle}" suffix="fr" color="Blue"/>
-    <frobo_sonar parent="${name}" offset_x="0.125" offset_y="0" angle="0" suffix="fc" color="Blue"/>
-    <frobo_sonar parent="${name}" offset_x="0.115" offset_y="0.055" angle="${sonar_angle}" suffix="fl" color="Blue"/>
+    <frobo_sonar parent="base" offset_x="0.115" offset_y="-0.055" angle="-${sonar_angle}" suffix="fr" color="Blue"/>
+    <frobo_sonar parent="base" offset_x="0.125" offset_y="0" angle="0" suffix="fc" color="Blue"/>
+    <frobo_sonar parent="base" offset_x="0.115" offset_y="0.055" angle="${sonar_angle}" suffix="fl" color="Blue"/>
 	
   </xacro:macro>
 

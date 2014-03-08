@@ -12,7 +12,7 @@
   <xacro:include filename="$(find frobo_description)/urdf/materials.urdf.xacro" />
 
   <!-- Now we can start using the macros included above to define the actual Frobo -->
-  <frobo_base name="base" color="Brown"/>
+  <frobo_base color="Brown"/>
 
   <!-- Camera -->
   <kinect_camera name="head_camera" parent="base_link">
