@@ -1,6 +1,6 @@
 <package>
   <name>frobo_bringup</name>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 
   <description>Frobo Startup Package</description>
 
@@ -15,5 +15,18 @@
   <run_depend>frobo_description</run_depend>
   <run_depend>freenect_launch</run_depend>
   <run_depend>depthimage_to_laserscan</run_depend>
+  <run_depend>rosserial_python</run_depend>
+  <run_depend>frobo_nav</run_depend>
+  <run_depend>rosbash</run_depend>
+  <run_depend>robot_state_publisher</run_depend>
+  <run_depend>joint_state_publisher</run_depend>
+  <run_depend>razor_imu_9dof</run_depend>
+  <run_depend>ros_arduino_bridge</run_depend>
+  <run_depend>ros_arduino_python</run_depend>
+  <run_depend>xv_11_laser_driver</run_depend>
+  <run_depend>map_server</run_depend>
+  <run_depend>move_base</run_depend>
+  <run_depend>amcl</run_depend>
+  <run_depend>robot_pose_ekf</run_depend>
 
 </package>
