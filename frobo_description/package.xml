@@ -2,7 +2,7 @@
   <name>frobo_description</name>
   <version>1.0.0</version>
   <description>
-     frobo_description provides a model of Frobo for simulation and visualization. 
+     A model of Frobo for simulation and visualization. 
   </description>
   <author email="krirobo@gmail.com">Kristof Robot</author>
   <maintainer email="krirobo@gmail.com">Kristof Robot</maintainer>

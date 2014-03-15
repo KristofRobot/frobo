@@ -2,7 +2,7 @@
 <package>
   <name>frobo_gazebo</name>
   <version>1.0.0</version>
-  <description>frobo_gazebo provides a gazebo model of Frobo</description>
+  <description>A gazebo model of Frobo</description>
 
   <author email="krirobo@gmail.com">Kristof Robot</author>
   <maintainer email="krirobo@gmail.com">Kristof Robot</maintainer>
