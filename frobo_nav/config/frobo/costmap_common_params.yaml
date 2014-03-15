@@ -4,5 +4,8 @@ robot_radius: 0.15
 inflation_radius: 0.20
 max_obstacle_height: 0.6
 min_obstacle_height: 0.0
-observation_sources: scan
-scan: {data_type: LaserScan, topic: /scan, marking: true, clearing: true}
+observation_sources: scan left_sonar center_sonar right_sonar
+scan: {data_type: LaserScan, topic: /scan, marking: true, clearing: true, expected_update_rate: 0.4}
+left_sonar: {data_type: LaserScan, topic: /serial_node/sonar_fl, marking: true, clearing: true, obstacle_range: 0.5, raytrace_range: 0.5, expected_update_rate: 1.0}
+center_sonar: {data_type: LaserScan, topic: /serial_node/sonar_fc, marking: true, clearing: true, obstacle_range: 0.5, raytrace_range: 0.5, expected_update_rate: 1.0}
+right_sonar: {data_type: LaserScan, topic: /serial_node/sonar_fr, marking: true, clearing: true, obstacle_range: 0.5, raytrace_range: 0.5, expected_update_rate: 1.0}
