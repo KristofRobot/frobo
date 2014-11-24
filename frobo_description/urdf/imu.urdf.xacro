@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- define a imu -->
+  <xacro:macro name="imu" params="name parent *origin">
+    <joint name="${name}_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${name}_link"/>
+    </joint>
+    <link name="${name}_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+	  <!-- <mesh filename="package://frobo_description/meshes/imu.stl" /> -->
+          <box size="0.02 0.015 0.005"/>
+        </geometry>
+        <material name="Blue" />
+      </visual>
+    </link>
+  </xacro:macro>
+
+</robot>

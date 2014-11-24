@@ -1,13 +1,23 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:property name="ground_clearance" value="0.0740" />
+
+<!-- Grey wheels -->
+  <xacro:property name="ground_clearance" value="0.0495" />
+  <xacro:property name="level1_clearance" value="0.16" />
+  <xacro:property name="level2_clearance" value="0.215" />
+  <xacro:property name="level3_clearance" value="0.275" />
+  <xacro:property name="wheel_offset_y" value="0.116" />
+  <xacro:property name="wheel_length" value="0.02032" />
+  <xacro:property name="wheel_radius" value="0.0375" />
+<!-- Orange wheels -->
+<!--  <xacro:property name="ground_clearance" value="0.0740" />
   <xacro:property name="level1_clearance" value="0.18" />
   <xacro:property name="level2_clearance" value="0.24" />
   <xacro:property name="level3_clearance" value="0.305" />
   <xacro:property name="wheel_offset_y" value="0.116" />
   <xacro:property name="wheel_length" value="0.02032" />
-  <xacro:property name="wheel_radius" value="0.06191" />
+  <xacro:property name="wheel_radius" value="0.06191" /> -->
   <xacro:property name="swivel_length" value="0.019" />
   <xacro:property name="swivel_radius" value="0.025" />
   <xacro:property name="base_radius" value="0.15" />
@@ -34,7 +44,7 @@
         <geometry>
           <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
         </geometry>
-        <material name="${color}" />
+        <material name="${color}" /> 
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -136,14 +146,14 @@
         <geometry>
           <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
         </geometry>
-        <material name="Orange" />
+        <material name="Grey" />
       </visual>
       <visual>
         <origin xyz="0 ${-1*wheel_offset_y} ${wheel_radius}" rpy="1.57 0 0" />
         <geometry>
           <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
         </geometry>
-        <material name="Orange" />
+        <material name="Grey" />
       </visual>
       <!-- fixed swivel, without tf transform, just for visualization -->
       <!--
