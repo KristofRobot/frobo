@@ -56,9 +56,9 @@ class NavTest():
         # that was used to launch RViz.
         locations = dict()
         
-       locations['hall'] = Pose(Point(-0.486, -0.689, 0.000), Quaternion(0.000, 0.000, 0.000, 1.000))
-       locations['living_room'] = Pose(Point(1.623, 7.880, 0.000), Quaternion(0.000, 0.000, 0.707, 0.707))
-       locations['kitchen'] = Pose(Point(-1.577, 6.626, 0.000), Quaternion(0.000, 0.000, 1.000, 0.000))
+        locations['hall'] = Pose(Point(-0.486, -0.689, 0.000), Quaternion(0.000, 0.000, 0.000, 1.000))
+        locations['living_room'] = Pose(Point(1.623, 7.880, 0.000), Quaternion(0.000, 0.000, 0.707, 0.707))
+        locations['kitchen'] = Pose(Point(-1.577, 6.626, 0.000), Quaternion(0.000, 0.000, 1.000, 0.000))
         
         # Publisher to manually control the robot (e.g. to stop it)
         self.cmd_vel_pub = rospy.Publisher('cmd_vel', Twist)
