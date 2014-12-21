@@ -16,7 +16,7 @@
     <remap from="image" to="/camera/depth/image_raw" />
     <remap from="camera_info" to="/camera/depth/camera_info" />
     <remap from="scan" to="/scan" />
-    <param name="output_frame_id" value="/head_camera_ir_link" />
+    <param name="output_frame_id" value="/head_camera_depth_frame" />
     <param name="scan_time" value="0.33" />
 </node>
 
