@@ -17,18 +17,18 @@
 
   <!-- Camera -->
   <kinect_camera name="head_camera" parent="base_link">
-    <origin xyz="0 0 0.32" rpy="0 0 0"/>
+    <origin xyz="0 0.002 0.345" rpy="0 0 0"/>
   </kinect_camera>
 
   <!-- Lidar -->
   <lidar name="lidar" parent="base_link">
-    <origin xyz="-0.02 0 0.26" rpy="0 0 0"/>
+    <origin xyz="-0.02 0 0.165" rpy="0 0 0"/>
   </lidar>
 
   <!-- IMU -->
-  <imu name="base_imu" parent="base_link">
+ <!-- <imu name="base_imu" parent="base_link">
     <origin xyz="0 0 0.28" rpy="0 0 0"/>
-  </imu>
+  </imu>-->
 
   <!-- extensions -->
   <xacro:frobo_base_gazebo />
