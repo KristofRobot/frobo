@@ -1,1 +1,1 @@
-roslaunch frobo_bringup fake_laser.launch
+roslaunch frobo_bringup kinect.launch

@@ -10,28 +10,28 @@ Based on  ROS by Example Vol 1 Package by Patrick Goebel, see https://github.com
 ## Use real Frobo
 ### Start Frobo
 
-     scripts/robotStart
+     scripts/robotStart.sh
 
 ### Start laser scan
 Using Kinect:
 
-     scripts/kinectStart
+     scripts/kinectLaserStart.sh
      
 Using XV11 lidar:
 
-     scripts/laserStart
+     scripts/laserStart.sh
 
 ### Start optional components     
 IMU:
 
-     scripts/imuStart
+     scripts/imuStart.sh
      
 Collision detection Sonars:
 
-     scripts/sonarStart
+     scripts/sonarStart.sh
 
 ### Navigate     
-Navigate around on a map using RVIZ Nav Goals:
+Navigate around on a map using RVIZ Nav goals:
 
      scripts/mapStart.sh
      
@@ -48,6 +48,11 @@ Patrol between defined checkpoints:
      rosrun map_server map_saver -f hector_laser_map_360
      
 ## Other scripts
+
+Start Kinect and view image:
+
+     scripts/kinectStart.sh
+     rosrun image_view image_view image:=/camera/rgb/image_raw
 
 Connect directly to ROS Arduino motor controller 
 (for commands, see https://github.com/KristofRobot/ros_arduino_bridge/blob/master/ros_arduino_firmware/src/libraries/ROSArduinoBridge_motor_only/commands.h) :
