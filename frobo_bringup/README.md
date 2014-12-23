@@ -38,6 +38,10 @@ Navigate around on a map using RVIZ Nav goals:
 Patrol between defined checkpoints:
 
      scripts/patrol.sh
+
+Stall detection during navigation using move_base:
+
+     scripts/stallDetection.sh
      
 ## Create Map
 
