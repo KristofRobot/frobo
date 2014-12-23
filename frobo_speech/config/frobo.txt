@@ -1,0 +1,10 @@
+frobo
+go to kitchen
+go to hall
+go to living
+what is the time
+who are you
+stop
+halt
+yes
+no
