@@ -52,6 +52,9 @@ Stall detection during navigation using move_base:
      rosrun map_server map_saver -f hector_laser_map_360
      
 ## Other scripts
+Speech recognition and talk back:
+
+     scripts/talkback.sh
 
 Start Kinect and view image:
 
