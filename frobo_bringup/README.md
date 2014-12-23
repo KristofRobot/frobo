@@ -52,6 +52,10 @@ Stall detection during navigation using move_base:
      rosrun map_server map_saver -f hector_laser_map_360
      
 ## Other scripts
+Talk using Festival:
+
+     scripts/talk.sh
+
 Speech recognition and talk back:
 
      scripts/talkback.sh
