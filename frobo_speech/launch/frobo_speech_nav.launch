@@ -1,0 +1,38 @@
+<launch>
+
+  <param name="use_sim_time" value="false" />
+  
+  <!-- EDIT THIS LINE TO REFLECT THE NAME OF YOUR OWN MAP FILE 
+       Can also be overridden on the command line -->
+  <arg name="map" default="test_map.yaml" />
+
+  <!-- Run the map server with the desired map -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find frobo_nav)/maps/$(arg map)"/>
+
+  <!-- Start the move_base node with the nav_test parameters -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find frobo_nav)/config/frobo/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find frobo_nav)/config/frobo/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find frobo_nav)/config/frobo/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find frobo_nav)/config/frobo/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find frobo_nav)/config/frobo/base_local_planner_params.yaml" command="load" />
+  </node>
+
+
+  <!-- Fire up AMCL -->
+  <include file="$(find frobo_nav)/launch/frobo_amcl.launch" />
+  
+  <node name="recognizer" pkg="ros_pocketsphinx" type="recognizer.py">
+    <param name="lm" value="$(find frobo_speech)/config/frobo.lm"/>
+    <param name="dict" value="$(find frobo_speech)/config/frobo.dic"/>
+  </node>
+
+  <node name="soundplay_node" pkg="sound_play" type="soundplay_node.py" output="screen"/>
+
+  <!-- Start the navigation test -->
+  <node pkg="frobo_speech" type="voice_nav_move.py" name="voice_nav_move" output="screen">
+  	<param name="voice" value="voice_kal_diphone"/>
+  	<param name="wavepath" value="$(find frobo_speech)/sounds"/>
+  </node>
+
+</launch>

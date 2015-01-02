@@ -1,10 +1,23 @@
 <s> FROBO </s>
+<s> KITCHEN </s>
 <s> GO TO KITCHEN </s>
+<s> HALL </s>
 <s> GO TO HALL </s>
+<s> LIVING </s>
+<s> ROOM </s>
+<s> LIVING ROOM </s>
 <s> GO TO LIVING </s>
+<s> GO TO LIVING ROOM </s>
+<s> TIME </s>
 <s> WHAT IS THE TIME </s>
-<s> WHO ARE YOU </s>
+<s> DATE </s>
+<s> WHAT IS THE DATE </s>
 <s> STOP </s>
 <s> HALT </s>
-<s> YES </s>
-<s> NO </s>
+<s> ABORT </s>
+<s> HELP </s>
+<s> HELP ME </s>
+<s> HOLE </s>
+<s> HAL </s>
+<s> THANK YOU </s>
+<s> THANKS </s>

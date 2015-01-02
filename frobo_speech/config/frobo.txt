@@ -1,10 +1,23 @@
 frobo
+kitchen
 go to kitchen
+hall
 go to hall
+living
+room
+living room
 go to living
+go to living room
+time
 what is the time
-who are you
+date
+what is the date
 stop
 halt
-yes
-no
+abort
+help
+help me
+hole
+hal
+thank you
+thanks

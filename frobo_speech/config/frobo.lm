@@ -1,4 +1,4 @@
-Language model created by QuickLM on Tue Dec 23 03:32:33 EST 2014
+Language model created by QuickLM on Fri Jan  2 13:10:54 EST 2015
 Copyright (c) 1996-2010 Carnegie Mellon University and Alexander I. Rudnicky
 
 The model is in standard ARPA format, designed by Doug Paul while he was at MITRE.
@@ -7,82 +7,119 @@ The code that was used to produce this language model is available in Open Sourc
 Please visit http://www.speech.cs.cmu.edu/tools/ for more information
 
 The (fixed) discount mass is 0.5. The backoffs are computed using the ratio method.
-This model based on a corpus of 10 sentences and 19 words
+This model based on a corpus of 23 sentences and 24 words
 
 \data\
-ngram 1=19
-ngram 2=27
-ngram 3=19
+ngram 1=24
+ngram 2=44
+ngram 3=34
 
 \1-grams:
--0.9138 </s> -0.3010
--0.9138 <s> -0.2445
--1.9138 ARE -0.2957
--1.9138 FROBO -0.2445
--1.4367 GO -0.2848
--1.9138 HALL -0.2445
--1.9138 HALT -0.2445
--1.9138 IS -0.2957
--1.9138 KITCHEN -0.2445
--1.9138 LIVING -0.2445
--1.9138 NO -0.2445
--1.9138 STOP -0.2445
--1.9138 THE -0.2957
--1.9138 TIME -0.2445
--1.4367 TO -0.2848
--1.9138 WHAT -0.2957
--1.9138 WHO -0.2957
--1.9138 YES -0.2445
--1.9138 YOU -0.2445
+-0.8788 </s> -0.3010
+-0.8788 <s> -0.2158
+-2.2405 ABORT -0.2395
+-1.9395 DATE -0.2395
+-2.2405 FROBO -0.2395
+-1.6385 GO -0.2909
+-2.2405 HAL -0.2395
+-1.9395 HALL -0.2395
+-2.2405 HALT -0.2395
+-1.9395 HELP -0.2366
+-2.2405 HOLE -0.2395
+-1.9395 IS -0.2960
+-1.9395 KITCHEN -0.2395
+-1.6385 LIVING -0.2307
+-2.2405 ME -0.2395
+-1.7634 ROOM -0.2395
+-2.2405 STOP -0.2395
+-2.2405 THANK -0.2985
+-2.2405 THANKS -0.2395
+-1.9395 THE -0.2909
+-1.9395 TIME -0.2395
+-1.6385 TO -0.2806
+-1.9395 WHAT -0.2960
+-2.2405 YOU -0.2395
 
 \2-grams:
--1.3010 <s> FROBO 0.0000
--0.8239 <s> GO 0.0000
--1.3010 <s> HALT 0.0000
--1.3010 <s> NO 0.0000
--1.3010 <s> STOP 0.0000
--1.3010 <s> WHAT 0.0000
--1.3010 <s> WHO 0.0000
--1.3010 <s> YES 0.0000
--0.3010 ARE YOU 0.0000
+-1.6628 <s> ABORT 0.0000
+-1.6628 <s> DATE 0.0000
+-1.6628 <s> FROBO 0.0000
+-1.0607 <s> GO 0.0000
+-1.6628 <s> HAL 0.0000
+-1.6628 <s> HALL 0.0000
+-1.6628 <s> HALT 0.0000
+-1.3617 <s> HELP 0.0000
+-1.6628 <s> HOLE 0.0000
+-1.6628 <s> KITCHEN 0.0000
+-1.3617 <s> LIVING 0.0000
+-1.6628 <s> ROOM 0.0000
+-1.6628 <s> STOP 0.0000
+-1.6628 <s> THANK 0.0000
+-1.6628 <s> THANKS 0.0000
+-1.6628 <s> TIME 0.0000
+-1.3617 <s> WHAT 0.0000
+-0.3010 ABORT </s> -0.3010
+-0.3010 DATE </s> -0.3010
 -0.3010 FROBO </s> -0.3010
 -0.3010 GO TO 0.0000
+-0.3010 HAL </s> -0.3010
 -0.3010 HALL </s> -0.3010
 -0.3010 HALT </s> -0.3010
+-0.6021 HELP </s> -0.3010
+-0.6021 HELP ME 0.0000
+-0.3010 HOLE </s> -0.3010
 -0.3010 IS THE 0.0000
 -0.3010 KITCHEN </s> -0.3010
--0.3010 LIVING </s> -0.3010
--0.3010 NO </s> -0.3010
+-0.6021 LIVING </s> -0.3010
+-0.6021 LIVING ROOM 0.0000
+-0.3010 ME </s> -0.3010
+-0.3010 ROOM </s> -0.3010
 -0.3010 STOP </s> -0.3010
--0.3010 THE TIME 0.0000
+-0.3010 THANK YOU 0.0000
+-0.3010 THANKS </s> -0.3010
+-0.6021 THE DATE 0.0000
+-0.6021 THE TIME 0.0000
 -0.3010 TIME </s> -0.3010
--0.7782 TO HALL 0.0000
--0.7782 TO KITCHEN 0.0000
--0.7782 TO LIVING 0.0000
+-0.9031 TO HALL 0.0000
+-0.9031 TO KITCHEN 0.0000
+-0.6021 TO LIVING 0.0000
 -0.3010 WHAT IS 0.0000
--0.3010 WHO ARE 0.0000
--0.3010 YES </s> -0.3010
 -0.3010 YOU </s> -0.3010
 
 \3-grams:
+-0.3010 <s> ABORT </s>
+-0.3010 <s> DATE </s>
 -0.3010 <s> FROBO </s>
 -0.3010 <s> GO TO
+-0.3010 <s> HAL </s>
+-0.3010 <s> HALL </s>
 -0.3010 <s> HALT </s>
--0.3010 <s> NO </s>
+-0.6021 <s> HELP </s>
+-0.6021 <s> HELP ME
+-0.3010 <s> HOLE </s>
+-0.3010 <s> KITCHEN </s>
+-0.6021 <s> LIVING </s>
+-0.6021 <s> LIVING ROOM
+-0.3010 <s> ROOM </s>
 -0.3010 <s> STOP </s>
+-0.3010 <s> THANK YOU
+-0.3010 <s> THANKS </s>
+-0.3010 <s> TIME </s>
 -0.3010 <s> WHAT IS
--0.3010 <s> WHO ARE
--0.3010 <s> YES </s>
--0.3010 ARE YOU </s>
--0.7782 GO TO HALL
--0.7782 GO TO KITCHEN
--0.7782 GO TO LIVING
--0.3010 IS THE TIME
+-0.9031 GO TO HALL
+-0.9031 GO TO KITCHEN
+-0.6021 GO TO LIVING
+-0.3010 HELP ME </s>
+-0.6021 IS THE DATE
+-0.6021 IS THE TIME
+-0.3010 LIVING ROOM </s>
+-0.3010 THANK YOU </s>
+-0.3010 THE DATE </s>
 -0.3010 THE TIME </s>
 -0.3010 TO HALL </s>
 -0.3010 TO KITCHEN </s>
--0.3010 TO LIVING </s>
+-0.6021 TO LIVING </s>
+-0.6021 TO LIVING ROOM
 -0.3010 WHAT IS THE
--0.3010 WHO ARE YOU
 
 \end\
