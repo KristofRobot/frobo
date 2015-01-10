@@ -3,7 +3,7 @@
   <!-- Start the left motor stall detection -->
   <node pkg="frobo_nav" type="nav_stall.py" name="nav_stall_left" output="screen">
     <param name="current_topic" value="/arduino/sensor/motor_current_left" />
-    <param name="stall_current" value="0.1" />
+    <param name="stall_current" value="0.2" />
     <param name="recovery_speed" value="0.1" />
     <param name="recovery_time" value="3" />
   </node>
