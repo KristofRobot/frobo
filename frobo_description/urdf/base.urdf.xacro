@@ -5,7 +5,7 @@
 <!-- Grey wheels -->
   <xacro:property name="ground_clearance" value="0.053" />
   <xacro:property name="level1_clearance" value="0.1175" />
-  <xacro:property name="level2_clearance" value="0.180" />
+  <xacro:property name="level2_clearance" value="0.1875" />
   <xacro:property name="level3_clearance" value="0.282" />
   <xacro:property name="wheel_offset_y" value="0.116" />
   <xacro:property name="wheel_length" value="0.02032" />

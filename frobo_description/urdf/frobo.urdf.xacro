@@ -22,7 +22,7 @@
 
   <!-- Lidar -->
   <lidar name="lidar" parent="base_link">
-    <origin xyz="-0.02 0 0.165" rpy="0 0 0"/>
+    <origin xyz="-0.051 0 0.1725" rpy="0 0 0"/>
   </lidar>
 
   <!-- IMU -->
