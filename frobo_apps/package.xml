@@ -1,0 +1,30 @@
+<package>
+  <name>frobo_apps</name>
+  <version>1.0.0</version>
+
+  <description>Frobo Apps Package</description>
+
+  <author email="krirobo@gmail.com">Kristof Robot</author>
+  <maintainer email="krirobo@gmail.com">Kristof Robot</maintainer>
+  <license>BSD</license>
+  <url type="repository">https://github.com/KristofRobot/frobo</url>
+  <url type="bugtracker">https://github.com/KristofRobot/frobo/issues</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>rospy</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>tf</build_depend>
+
+  <run_depend>rospy</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>tf</run_depend>
+
+  <export>
+
+  </export>
+</package>
