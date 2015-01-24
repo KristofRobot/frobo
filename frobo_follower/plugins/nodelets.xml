@@ -1,0 +1,7 @@
+<library path="lib/libfrobo_follower">
+  <class name="frobo_follower/FroboFollower" type="frobo_follower::FroboFollower" base_class_type="nodelet::Nodelet">
+    <description>
+      The frobo people follower node.
+    </description>
+  </class>
+</library> 
