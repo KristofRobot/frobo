@@ -55,6 +55,34 @@ Stall detection during navigation using move_base:
      rosbag play --clock laser_map_360.bag
      rosrun map_server map_saver -f hector_laser_map_360
      
+## Follow
+
+### Object Follower
+
+Color blob tracking:
+
+     roslaunch frobo_bringup kinect_rgb.launch
+     roslaunch frobo_vision camshift.launch
+     
+Object follower:
+
+     roslaunch frobo_apps object_follower.launch
+
+### Person Follower
+
+#### Python
+
+     roslaunch frobo_bringup kinect_pointcloud.launch
+     roslaunch frobo_apps follower2.launch
+
+#### C++ (best performance)
+
+     roslaunch frobo_follower follower.launch
+     
+OR
+
+     scripts/follower.sh
+     
 ## Other scripts
 Talk using Festival:
 
