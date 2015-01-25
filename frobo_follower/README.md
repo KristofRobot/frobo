@@ -6,7 +6,6 @@ Based on TurtlebotFollower, see https://github.com/turtlebot/turtlebot_apps/
 
 ## Person Follower
 
-    roslaunch frobo_bringup kinect_pointcloud.launch
     roslaunch frobo_follower follower.launch
 
 
