@@ -1,4 +1,4 @@
-# Frobo Speech Package
+# Frobo Follower Package
 
 Based on TurtlebotFollower, see https://github.com/turtlebot/turtlebot_apps/
 
