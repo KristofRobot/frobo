@@ -2,6 +2,11 @@
   <!-- Launch the freenect drivers -->
   <!-- Disable all processing -->
   <include file="$(find freenect_launch)/launch/freenect.launch">
+   
+    <!-- Don't publish the camera transforms as these are taken care of by the
+     robot state publisher. -->
+    <arg name="publish_tf" default="false" />
+  
     <arg name="data_skip" value="9" />
     <arg name="rgb_processing" value="false" />
     <arg name="ir_processing" value="false" />

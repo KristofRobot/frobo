@@ -4,34 +4,37 @@
 <launch>
   <arg name="simulation" default="false"/>
   <group unless="$(arg simulation)"> <!-- Real robot -->
-  
-  <!-- Launch the freenect drivers -->
-  <!-- Enable depth processing only (pointcloud depht/points) -->
-  <include file="$(find freenect_launch)/launch/freenect.launch">
-    <arg name="rgb_processing" value="false" />
-    <arg name="ir_processing" value="false" />
-    <arg name="depth_processing" value="true" />
-    <arg name="depth_registered_processing" value="false" />
-    <arg name="disparity_processing" value="false" />
-    <arg name="disparity_registered_processing" value="false" />
-    <arg name="hw_registered_processing" value="false" />
-    <arg name="sw_registered_processing" value="false" />
-  </include>
+    <!-- Launch the freenect drivers -->
+    <!-- Enable depth processing only (pointcloud depht/points) -->
+    <include file="$(find freenect_launch)/launch/freenect.launch">
+      <!-- Don't publish the camera transforms as these are taken care of by the
+        robot state publisher. -->
+        <arg name="publish_tf" default="false" />
+        
+        <arg name="rgb_processing" value="false" />
+        <arg name="ir_processing" value="false" />
+        <arg name="depth_processing" value="true" />
+        <arg name="depth_registered_processing" value="false" />
+        <arg name="disparity_processing" value="false" />
+        <arg name="disparity_registered_processing" value="false" />
+        <arg name="hw_registered_processing" value="false" />
+        <arg name="sw_registered_processing" value="false" />
+    </include>
 
-  <!--  Load follower into the 3d sensors nodelet manager to avoid pointcloud serializing -->
+    <!--  Load follower into the 3d sensors nodelet manager to avoid pointcloud serializing -->
     <node pkg="nodelet" type="nodelet" name="frobo_follower"
-          args="load frobo_follower/FroboFollower camera/camera_nodelet_manager">
-      <remap from="frobo_follower/cmd_vel" to="cmd_vel"/>
-      <remap from="depth/points" to="camera/depth/points"/>
-      <param name="enabled" value="true" />
-      <param name="x_scale" value="7.0" />
-      <param name="z_scale" value="2.0" />
-      <param name="min_x" value="-0.35" />
-      <param name="max_x" value="0.35" />
-      <param name="min_y" value="0.1" />
-      <param name="max_y" value="0.5" />
-      <param name="max_z" value="1.2" />
-      <param name="goal_z" value="0.6" />
+              args="load frobo_follower/FroboFollower camera/camera_nodelet_manager">
+        <remap from="frobo_follower/cmd_vel" to="cmd_vel"/>
+        <remap from="depth/points" to="camera/depth/points"/>
+        <param name="enabled" value="true" />
+        <param name="x_scale" value="7.0" />
+        <param name="z_scale" value="2.0" />
+        <param name="min_x" value="-0.35" />
+        <param name="max_x" value="0.35" />
+        <param name="min_y" value="0.1" />
+        <param name="max_y" value="0.5" />
+        <param name="max_z" value="1.2" />
+        <param name="goal_z" value="0.6" />
     </node>
   </group>
   <group if="$(arg simulation)">
