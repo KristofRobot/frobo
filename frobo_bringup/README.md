@@ -56,6 +56,7 @@ Stall detection during navigation using move_base:
      roscore
      rosparam set use_sim_time true
      roslaunch hector_mapping mapping_default.launch
+     rosrun hector_mapping hector_mapping _base_frame:=base_footprint _map_resolution:=0.1
      rosbag play --clock map_data.bag
      rosrun map_server map_saver -f map
      
