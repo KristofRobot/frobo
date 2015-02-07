@@ -47,13 +47,25 @@ Stall detection during navigation using move_base:
 
      scripts/stallDetection.sh
      
-## Create Map
+## Create Bag file for mapping
+
+     rosbag record -O map_data /scan /tf /odom
+
+## Create Map from Bag file using hector_mapping (recommended)
 
      roscore
      rosparam set use_sim_time true
      roslaunch hector_mapping mapping_default.launch
-     rosbag play --clock laser_map_360.bag
-     rosrun map_server map_saver -f hector_laser_map_360
+     rosbag play --clock map_data.bag
+     rosrun map_server map_saver -f map
+     
+## Create Map from Bag file using gmapping 
+
+     roscore
+     rosparam set use_sim_time true
+     rosrun gmapping slam_gmapping scan:=scan _delta:=0.1 _maxUrange:=4.99 _xmin:=-5.0 _ymin:=-5.0 _xmax:=5.0 _ymax:=5.0 _particles:=30 _srr:=0 _srt:=0 _str:=0 _stt:=0.1 _minimumScore:=10000
+     rosbag play --clock map_data.bag
+     rosrun map_server map_saver -f map
      
 ## Follow
 
