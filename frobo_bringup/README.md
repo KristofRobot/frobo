@@ -47,11 +47,19 @@ Stall detection during navigation using move_base:
 
      scripts/stallDetection.sh
      
-## Create Bag file for mapping
+### Exploration
+
+     /scripts/robotStart.sh
+     /scripts/laserStart.sh
+     roslaunch frobo_nav frobo_move_base.launch
+     rosrun hector_mapping hector_mapping _base_frame:=base_footprint _map_resolution:=0.1 _map_size:=200
+     roslaunch frontier_exploration global_map.launch
+     
+### Create Bag file for mapping
 
      rosbag record -O map_data /scan /tf /odom
 
-## Create Map from Bag file using hector_mapping (recommended)
+#### Create Map from Bag file using hector_mapping (recommended)
 
      roscore
      rosparam set use_sim_time true
@@ -59,7 +67,7 @@ Stall detection during navigation using move_base:
      rosbag play --clock map_data.bag
      rosrun map_server map_saver -f map
      
-## Create Map from Bag file using gmapping 
+#### Create Map from Bag file using gmapping 
 
      roscore
      rosparam set use_sim_time true
@@ -67,9 +75,9 @@ Stall detection during navigation using move_base:
      rosbag play --clock map_data.bag
      rosrun map_server map_saver -f map
      
-## Follow
+### Follow
 
-### Object Follower
+#### Object Follower
 
 Color blob tracking:
 
@@ -80,14 +88,14 @@ Object follower:
 
      roslaunch frobo_apps object_follower.launch
 
-### Person Follower
+#### Person Follower
 
-#### Python
+##### Python
 
      roslaunch frobo_bringup kinect_pointcloud.launch
      roslaunch frobo_apps follower2.launch
 
-#### C++ (best performance)
+##### C++ (best performance)
 
      roslaunch frobo_follower follower.launch
      
