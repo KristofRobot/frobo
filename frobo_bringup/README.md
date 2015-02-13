@@ -117,6 +117,10 @@ Start Kinect and view image:
      scripts/kinectStart.sh
      rosrun image_view image_view image:=/camera/rgb/image_raw
 
+Stop Kinect (turn off completely to save power):
+
+    scripts/kinectStop.sh
+
 Connect directly to ROS Arduino motor controller 
 (for commands, see https://github.com/KristofRobot/ros_arduino_bridge/blob/master/ros_arduino_firmware/src/libraries/ROSArduinoBridge_motor_only/commands.h) :
 
