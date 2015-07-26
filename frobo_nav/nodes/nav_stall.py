@@ -38,7 +38,7 @@ class NavStall():
         rospy.on_shutdown(self.shutdown)
         
         # Publisher to manually control the robot (e.g. to stop it)
-        self.cmd_vel_pub = rospy.Publisher('cmd_vel', Twist)
+        self.cmd_vel_pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
         
         # Subscribe to the move_base action server
         self.move_base = SimpleActionClient("move_base", MoveBaseAction)
