@@ -13,21 +13,23 @@
   <xacro:include filename="$(find frobo_description)/urdf/materials.urdf.xacro" />
 
   <!-- Now we can start using the macros included above to define the actual Frobo -->
-  <frobo_base color="Brown"/>
+  
+  <!-- Base -->
+  <base color="Brown"/>
 
   <!-- Camera -->
-  <kinect_camera name="head_camera" parent="base_link">
-    <origin xyz="-0.015 0.002 0.345" rpy="0 0 0"/>
+  <kinect_camera name="head_camera" parent="base_3_level_link">
+    <origin xyz="-0.045 0.0 0.003" rpy="0 0 0"/>
   </kinect_camera>
 
   <!-- Lidar -->
-  <lidar name="lidar" parent="base_link">
-    <origin xyz="-0.051 0 0.1725" rpy="0 0 0"/>
+  <lidar name="lidar" parent="base_1_level_link">
+    <origin xyz="-0.051 0 0.003" rpy="0 0 0"/>
   </lidar>
 
   <!-- IMU -->
- <!-- <imu name="base_imu" parent="base_link">
-    <origin xyz="0 0 0.28" rpy="0 0 0"/>
+  <imu name="base_imu" parent="base_3_level_link">
+    <origin xyz="0 0 0.003" rpy="0 0 0"/>
   </imu>-->
 
   <!-- extensions -->

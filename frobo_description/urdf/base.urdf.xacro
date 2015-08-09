@@ -1,32 +1,45 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-
-<!-- Grey wheels -->
-  <xacro:property name="ground_clearance" value="0.053" />
-  <xacro:property name="level1_clearance" value="0.1175" />
-  <xacro:property name="level2_clearance" value="0.1875" />
-  <xacro:property name="level3_clearance" value="0.282" />
-  <xacro:property name="wheel_offset_y" value="0.116" />
-  <xacro:property name="wheel_length" value="0.02032" />
+<!-- Choose wheel type -->
+  <!-- Grey wheels -->
+  <xacro:property name="wheel_color" value="Grey" />
+  <xacro:property name="wheel_thickness" value="0.025" />
   <xacro:property name="wheel_radius" value="0.0375" />
-<!-- Orange wheels -->
-<!--  <xacro:property name="ground_clearance" value="0.0740" />
-  <xacro:property name="level1_clearance" value="0.18" />
-  <xacro:property name="level2_clearance" value="0.24" />
-  <xacro:property name="level3_clearance" value="0.305" />
-  <xacro:property name="wheel_offset_y" value="0.116" />
-  <xacro:property name="wheel_length" value="0.02032" />
+  <!-- distance between center and *side* of wheel (NOT CENTER) -->
+  <xacro:property name="wheel_offset_y" value="0.11" />
+  <!-- Orange wheels -->
+<!--
+  <xacro:property name="wheel_color" value="Orange" />
+  <xacro:property name="wheel_thickness" value="0.02032" />
   <xacro:property name="wheel_radius" value="0.06191" /> -->
+  <!-- distance between center and *side* of wheel (NOT CENTER) -->
+  <!--<xacro:property name="wheel_offset_y" value="0.11" />
+-->
+  
+<!-- Generic properties -->
+  <!-- distance between bottom ground plate and center wheel - dictated by bracket -->
+  <xacro:property name="wheel_offset_z" value="-0.0138" />
+    
+  <xacro:property name="base_radius" value="0.15" />
+  <xacro:property name="base_collision_radius" value="0.15" />
+  <xacro:property name="base_collision_bottom_clearance" value="0.010" />
+  <xacro:property name="base_thickness" value="0.006" />
+  <!-- level1_clearance: distance between top ground plate and bottom level 1 plate (NOT centers) -->
+  <xacro:property name="level1_clearance" value="0.053" />
+  <!-- level2_clearance: distance between bottom level 1 plate and top level 2 plate (NOT centers) -->
+  <xacro:property name="level2_clearance" value="0.065" />
+  <!-- level3_clearance: distance between bottom level 2 plate and top level 3 plate (NOT centers) -->
+  <xacro:property name="level3_clearance" value="0.086" />
+  <xacro:property name="base_mesh_scale" value="1" />
+  
   <xacro:property name="swivel_length" value="0.019" />
   <xacro:property name="swivel_radius" value="0.025" />
-  <xacro:property name="base_radius" value="0.15" />
-  <xacro:property name="base_collision_radius" value="0.20" />
-  <xacro:property name="base_collision_top_clearance" value="0.10" />
-  <xacro:property name="base_length" value="0.006" />
-  <xacro:property name="sonar_clearance" value="${ground_clearance-0.02}" />
+  
+  <xacro:property name="sonar_offset_z" value="-0.018" />
   <xacro:property name="sonar_angle" value="0.6" />
-
+  
+  <xacro:property name="PI" value="3.1415926535897931" />
 
   <!-- define a rotating wheel -->
   <xacro:macro name="frobo_wheel" params="suffix parent reflect color">
@@ -34,7 +47,7 @@
       <axis xyz="0 0 1" />
       <limit effort="100" velocity="100"/>
       <safety_controller k_velocity="10" />
-      <origin xyz="0 ${reflect*wheel_offset_y} ${wheel_radius}" rpy="${reflect*1.57} 0 0" />
+      <origin xyz="0 ${reflect*(wheel_offset_y+wheel_thickness/2)} ${wheel_offset_z}" rpy="${reflect*PI/2} 0 0" />
       <parent link="${parent}_link"/>
       <child link="${parent}_${suffix}_wheel_link"/>
     </joint>
@@ -42,14 +55,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+          <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
         </geometry>
         <material name="${color}" /> 
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+          <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
         </geometry>
       </collision>
       <inertial>
@@ -62,17 +75,28 @@
       </inertial>
     </link>
   </xacro:macro>
+  
+  <!-- define a fixed wheel -->
+  <xacro:macro name="frobo_wheel_fixed" params="reflect color">
+      <visual>
+        <origin xyz="0 ${reflect*(wheel_offset_y++wheel_thickness/2)} ${wheel_offset_z}" rpy="${PI/2} 0 0" />
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
+        </geometry>
+        <material name="${color}" />
+      </visual>
+  </xacro:macro>
 
   <!-- define a sonar -->
   <xacro:macro name="frobo_sonar" params="suffix parent offset_x offset_y angle color">
     <joint name="${parent}_${suffix}_sonar_joint" type="fixed">
-      <origin xyz="${offset_x} ${offset_y} ${sonar_clearance}" rpy="0 0 ${angle}" />
+      <origin xyz="${offset_x} ${offset_y} ${sonar_offset_z}" rpy="0 0 ${angle}" />
       <parent link="${parent}_link"/>
       <child link="${parent}_${suffix}_sonar_link"/>
     </joint>
     <link name="${parent}_${suffix}_sonar_link">
       <visual>
-        <origin xyz="0 0 0" rpy="-1.57 0 1.57" />
+        <origin xyz="0 0 0" rpy="-${PI/2} 0 ${PI/2}" />
         <geometry>
           <mesh filename="package://frobo_description/meshes/sonar.stl"  /> 
         </geometry>
@@ -80,9 +104,39 @@
       </visual>
     </link>
   </xacro:macro>
+  
+  <!-- define a base level -->
+  <xacro:macro name="frobo_level" params="suffix parent offset_z color">
+    <joint name="base_${suffix}_level_joint" type="fixed">
+      <origin xyz="0 0 ${offset_z}" rpy="0 0 0" />
+      <parent link="${parent}_link"/>
+      <child link="base_${suffix}_level_link"/>
+    </joint>
+    <link name="base_${suffix}_level_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <cylinder radius="${base_radius}" length="${base_thickness}"/>
+	    </geometry>
+        <material name="${color}" /> 
+      </visual>
+     </link>
+  </xacro:macro>
+  
+  <!-- define a standoff -->
+  <xacro:macro name="frobo_standoff" params="offset_x offset_y">
+      <visual>
+        <!-- 0.144 -> it sticks out about 8 mm from the bottom plate
+        i.e. mid is 0.25/2 - 0.008 -0.003 (thickness base) == 0.144 -->
+        <origin xyz="${offset_x} ${offset_y} 0.114" rpy="0 0 0" />
+        <geometry>
+            <cylinder radius="0.002" length="0.25"/>
+	    </geometry>
+      </visual>
+  </xacro:macro>
 
-  <!-- The xacro macro frobo_base contains: base and wheels -->
-  <xacro:macro name="frobo_base" params="color">
+  <!-- define base -->
+  <xacro:macro name="base" params="color">
     <link name="base_footprint">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -92,93 +146,57 @@
         <material name="Black" />
       </visual>
       <collision>
-        <origin xyz="0 0 ${ground_clearance}" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
          <box size="0.001 0.001 0.001"/>
         </geometry>
       </collision>
     </link>
-    <!-- 
-        base_footprint mapping was introduced as robot-pose-ekf requires it.
-        strictly spoken, base_link should be attached to the base, 
-	and base_footprint is a projection of base_link on the ground.
-        Here base_link and base_footprint are simply mapped on the same point, on the ground.
-        See also https://github.com/ros-planning/navigation/issues/15
-    -->
     <joint name="base_joint" type="fixed">
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 ${wheel_radius-wheel_offset_z}" rpy="0 0 0" />
       <parent link="base_footprint"/>
       <child link="base_link" />
     </joint>
     <link name="base_link">
       <visual>
-        <origin xyz="0 0 ${ground_clearance}" rpy="0 0 0" />
+        <!-- mesh is not centered in center, so need to take into account thickness -->
+        <origin xyz="0 0 -${base_thickness/2}" rpy="0 0 ${PI/2}" />
         <geometry>
-          <!-- <mesh filename="package://frobo_description/meshes/base.stl"  /> -->
-	  <cylinder radius="${base_radius}" length="${base_length}"/>
-        </geometry>
-        <material name="${color}" />
+            <mesh filename="package://frobo_description/meshes/base.stl" scale="${base_mesh_scale} ${base_mesh_scale} ${base_mesh_scale}" /> 
+	    </geometry>
+        <material name="${color}" /> 
       </visual>
-      <visual>
-        <origin xyz="0 0 ${level1_clearance}" rpy="0 0 0" />
-        <geometry>
-	  <cylinder radius="${base_radius}" length="${base_length}"/>
-        </geometry>
-        <material name="${color}" />
-      </visual>
-      <visual>
-        <origin xyz="0 0 ${level2_clearance}" rpy="0 0 0" />
-        <geometry>
-	  <cylinder radius="${base_radius}" length="${base_length}"/>
-        </geometry>
-        <material name="${color}" />
-      </visual>
-      <visual>
-        <origin xyz="0 0 ${level3_clearance}" rpy="0 0 0" />
-        <geometry>
-	  <cylinder radius="${base_radius}" length="${base_length}"/>
-        </geometry>
-        <material name="${color}" />
-      </visual> 
-      <!-- fixed wheels, without tf transform, just for visualization -->
-      <visual>
-        <origin xyz="0 ${1*wheel_offset_y} ${wheel_radius}" rpy="1.57 0 0" />
-        <geometry>
-          <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
-        </geometry>
-        <material name="Grey" />
-      </visual>
-      <visual>
-        <origin xyz="0 ${-1*wheel_offset_y} ${wheel_radius}" rpy="1.57 0 0" />
-        <geometry>
-          <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
-        </geometry>
-        <material name="Grey" />
-      </visual>
+      <!-- standoffs -->
+      <frobo_standoff offset_x="0.022" offset_y="-0.095"/>
+      <frobo_standoff offset_x="-0.107" offset_y="-0.095"/>
+      <frobo_standoff offset_x="0.022" offset_y="0.095"/>
+      <frobo_standoff offset_x="-0.107" offset_y="0.095"/>
+
+      <!-- fixed wheels, without tf transform, just for visualization - potentially more performant than rotating wheels-->
+      <!-- multiple visuals all take the colour of the first visual, so useless to define this
+        see http://answers.ros.org/question/154816/color-issue-with-urdf-and-multiple-visual-tags/
+      -->
+<!--
+      <frobo_wheel_fixed reflect="1" color="${wheel_color}"/>
+      <frobo_wheel_fixed reflect="-1" color="${wheel_color}"/>
+-->
+      
       <!-- fixed swivel, without tf transform, just for visualization -->
-      <!--
       <visual>
-        <origin xyz="-${wheel_offset_y} 0 ${swivel_radius}" rpy="1.57 0 0" />
+        <origin xyz="-${wheel_offset_y} 0 -${swivel_radius+base_thickness/2}" rpy="${PI/2} 0 0" />
         <geometry>
           <cylinder radius="${swivel_radius}" length="${swivel_length}"/>
         </geometry>
-        <material name="Grey" />
       </visual> 
-      -->
-      <!-- split collision object of base in two, one below lidar, and one on top lidar
-      to keep lidar free for object detection (otherwise it would be blocked by collision object) -->
+
+      <!-- basic collision protection, make sure to keep camera and lidar free for object detection 
+      (otherwise it would be blocked by collision object) -->
       <collision>
-        <origin xyz="0 0 ${level2_clearance/2}" rpy="0 0 0" /> 
+        <origin xyz="0 0 0" rpy="0 0 0" /> 
         <geometry>
-          <cylinder radius="${base_collision_radius}" length="${level2_clearance}"/>
+          <cylinder radius="${base_collision_radius}" length="${(-wheel_radius+wheel_offset_z+base_collision_bottom_clearance)*2}"/>
         </geometry>
       </collision>
-      <collision>
-        <origin xyz="0 0 ${level3_clearance+base_collision_top_clearance/2}" rpy="0 0 0" />
-        <geometry>
-          <cylinder radius="${base_collision_radius}" length="${base_collision_top_clearance}"/>
-        </geometry>
-      </collision> 
       <inertial>
         <origin xyz="0 0 ${base_radius}" rpy="0 0 0"/> 
         <mass value="5"/>
@@ -188,15 +206,22 @@
           izz="10e-3"/>
       </inertial>
     </link>
-  
-    <!-- drive wheels -->
-    <!--<frobo_wheel parent="${name}" suffix="l" reflect="1" color="Orange"/>
-    <frobo_wheel parent="${name}" suffix="r" reflect="-1" color="Orange"/>-->
+    
+    <!-- levels -->
+    <!-- clearances represent space in between levels, so need to add 2 times half the thickness of levels themselves
+      which is equal to one time the thickness (as all levels have the same thickness) -->
+    <frobo_level parent="base" suffix="1" offset_z="${base_thickness+level1_clearance}" color="${color}"/>
+    <frobo_level parent="base_1_level" suffix="2" offset_z="${base_thickness+level2_clearance}" color="${color}"/>
+    <frobo_level parent="base_2_level" suffix="3" offset_z="${base_thickness+level3_clearance}" color="${color}"/>
+    
+    <!-- rotating wheels -->
+    <frobo_wheel parent="base" suffix="l" reflect="1" color="${wheel_color}"/>
+    <frobo_wheel parent="base" suffix="r" reflect="-1" color="${wheel_color}"/>
 
     <!-- sonars -->
-    <!--<frobo_sonar parent="base" offset_x="0.115" offset_y="-0.055" angle="-${sonar_angle}" suffix="fr" color="Blue"/>
+    <frobo_sonar parent="base" offset_x="0.115" offset_y="-0.055" angle="-${sonar_angle}" suffix="fr" color="Blue"/>
     <frobo_sonar parent="base" offset_x="0.125" offset_y="0" angle="0" suffix="fc" color="Blue"/>
-    <frobo_sonar parent="base" offset_x="0.115" offset_y="0.055" angle="${sonar_angle}" suffix="fl" color="Blue"/>-->
+    <frobo_sonar parent="base" offset_x="0.115" offset_y="0.055" angle="${sonar_angle}" suffix="fl" color="Blue"/>
 	
   </xacro:macro>
 
