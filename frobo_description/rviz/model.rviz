@@ -7,7 +7,6 @@ Panels:
         - /Global Options1
         - /Status1
         - /RobotModel1
-        - /RobotModel1/Status1
       Splitter Ratio: 0.5
     Tree Height: 565
   - Class: rviz/Selection
@@ -61,6 +60,21 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        base_1_level_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_2_level_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_3_level_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         base_fc_sonar_link:
           Alpha: 1
           Show Axes: false
@@ -71,12 +85,32 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        base_footprint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         base_fr_sonar_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
+        base_imu_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_l_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_r_wheel_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -102,6 +136,11 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        lidar_bottom:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         lidar_link:
           Alpha: 1
           Show Axes: false
@@ -155,7 +194,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: base_link
+    Fixed Frame: base_footprint
     Frame Rate: 30
   Name: root
   Tools:
@@ -177,16 +216,21 @@ Visualization Manager:
     Current:
       Class: rviz/Orbit
       Distance: 2.15671
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.06
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
       Focal Point:
         X: 0
         Y: 0
         Z: 0
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.310399
+      Pitch: 0.340399
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.925398
+      Yaw: 0.910398
     Saved: ~
 Window Geometry:
   Displays:
@@ -204,5 +248,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1202
-  X: 42
-  Y: 25
+  X: 39
+  Y: 15
