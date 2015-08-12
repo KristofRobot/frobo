@@ -30,7 +30,7 @@
   <!-- level2_clearance: distance between bottom level 1 plate and top level 2 plate (NOT centers) -->
   <xacro:property name="level2_clearance" value="0.065" />
   <!-- level3_clearance: distance between bottom level 2 plate and top level 3 plate (NOT centers) -->
-  <xacro:property name="level3_clearance" value="0.086" />
+  <xacro:property name="level3_clearance" value="0.09" />
   <xacro:property name="base_mesh_scale" value="1" />
   
   <xacro:property name="swivel_length" value="0.019" />
@@ -45,6 +45,7 @@
   <xacro:macro name="frobo_wheel" params="suffix parent reflect color">
     <joint name="${parent}_${suffix}_wheel_joint" type="continuous">
       <axis xyz="0 0 1" />
+      <anchor xyz="0 0 0" />
       <limit effort="100" velocity="100"/>
       <safety_controller k_velocity="10" />
       <origin xyz="0 ${reflect*(wheel_offset_y+wheel_thickness/2)} ${wheel_offset_z}" rpy="${reflect*PI/2} 0 0" />
@@ -141,6 +142,7 @@
       <parent link="${parent}_link"/>
       <child link="swivel_bottom"/>
       <origin xyz="${offset_x} 0 ${-0.01615+offset_z}" rpy="0 0 0"/>
+      <anchor xyz="0 0 1" />
     </joint>
     <link name="swivel_bottom">
        <visual>

@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:property name="lidar_box_size_x" value="0.124" />
+  <xacro:property name="lidar_box_size_x" value="0.126" />
   <xacro:property name="lidar_box_size_y" value="0.105" />
   <xacro:property name="lidar_box_size_z" value="0.048" />
-  <xacro:property name="lidar_radius" value="0.038" />
+  <xacro:property name="lidar_radius" value="0.039" />
   <!-- offset relative to box - how much it sticks out on top -->
-  <xacro:property name="lidar_offset_z" value="0.01" />
+  <xacro:property name="lidar_offset_z" value="0.013" />
   
 
   <!-- define a lidar -->
